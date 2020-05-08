@@ -1,15 +1,19 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { RecordsService } from '../shared/services/records.service';
 @Component({
   selector: 'trackertable',
   templateUrl: './trackertable.component.html',
   styleUrls: ['./trackertable.component.css']
 })
 export class TrackertableComponent implements OnInit, OnChanges {
+
+  constructor(private recordServices: RecordsService) { }
+
   @Input() amount:any 
   @Input() description:any
-  @Input() expenseAmount:any
+  @Input() expenseAmount:any 
   @Input() description2:any
-  @Input() incomeDate:any
+  @Input() incomeDate:any 
   @Input() expenseDate:any
   @Input() inUser:any
   @Input() exUser:any
@@ -29,6 +33,7 @@ export class TrackertableComponent implements OnInit, OnChanges {
 
   ngOnInit(){ }
   ngOnChanges() {
+
     // Checking for the description, income and expense and pushing the values in to the table
     if(this.amount && this.description && this.incomeDate && this.inUser){
       this.records.push({desc:this.description, amount:this.amount, exAmount:this.temp, date:this.incomeDate, user:this.inUser});
@@ -38,6 +43,7 @@ export class TrackertableComponent implements OnInit, OnChanges {
     else if(this.expenseAmount && this.description2 && this.expenseDate && this.exUser){
       this.records.push({desc:this.description2, amount:this.temp, exAmount:this.expenseAmount, date:this.expenseDate, user:this.exUser});
     }
+    
     //Pushing income values to income array
     for(var i = 0; i < this.records.length; i++){
       this.incomeArr.push(this.records[i].amount);
@@ -49,8 +55,8 @@ export class TrackertableComponent implements OnInit, OnChanges {
       } 
     }
     //Adding Unique Incomes
-    this.totalIncome = this.uniqueIncomeArr. reduce(function(a, b){
-      return a + b;
+    this.totalIncome = this.uniqueIncomeArr.reduce(function(a, b){
+      return Number(a) + Number(b);
       }, 0);
     //Pushing expense values to expense array
     for(var e = 0; e < this.records.length; e++){
@@ -63,8 +69,8 @@ export class TrackertableComponent implements OnInit, OnChanges {
       } 
     }
     //Adding Unique Expenses
-    this.totalExpense = this.uniqueExpenseArr. reduce(function(c, d){
-      return c + d;
+    this.totalExpense = this.uniqueExpenseArr.reduce(function(c, d){
+      return Number(c) + Number(d);
       }, 0); 
 
     this.totalSaving = this.totalIncome - this.totalExpense;
@@ -77,5 +83,8 @@ export class TrackertableComponent implements OnInit, OnChanges {
     /* else if((this.totalIncome - this.totalExpense) > 0 && (this.totalIncome - this.totalExpense) != 0){
       this.yippee = true;
     } */
+  }
+  sendRecords(){
+    this.recordServices.sendRecords(this.records);
   }
 }

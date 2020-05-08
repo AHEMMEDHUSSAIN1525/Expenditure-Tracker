@@ -1,76 +1,37 @@
-<div class="myTitle">
-  <h3>Expenditure Tracker <div id="quote">
-    <h6>Beware of little expenses.</h6> 
-    <h6>A small leak will sink a grate ship</h6>
-  </div></h3> 
-</div>
 <div class="row">
-  <div class="col-sm-12 col-md-6 col-lg-6">
-    <button 
-      type="button" 
-      class="btn income-btn mr-3" 
-      (click)="staticModal.show()" 
-      style="width: 100%;"
-      >Add Income</button>
+  <div class="col-sm-12 col-md-2 col-lg-2">
+    <filters></filters>
   </div>
-  <div class="col-sm-12 col-md-6 col-lg-6">
-    <button 
-      type="button" 
-      class="btn expense-btn" 
-      (click)="staticModal2.show()" 
-      style="width: 100%;">Add Expenditure</button>
-  </div>
-</div>
-  <br/>
-  <!-- Income Modal -->
-  <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
-      tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 id="dialog-static-name" class="modal-title pull-left">Add your Income details</h4>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form #detailsForm = 'ngForm'> 
-            <div class="form-group">
-              <label for="description" class="form-label">
-                <h6>Add the description here</h6>
-              </label>
-              <textarea 
-                name="description" 
-                class="form-control" 
-                rows="5" 
-                style="resize: none;"
-                ngModel
-                #desc='ngModel'
-                required></textarea>
-            </div>
-            <div class="form-group">
-              <label for="income">
-                <h6>Add Income Amount in rupees</h6>
-              </label>
-              <input 
-                class="form-control" 
-                type="number" 
-                name="income"
-                ngModel
-                #amount='ngModel'
-                required><br/>
-            </div>
-            <div class="form-group">
-              <input 
-                type="text"
-                autocomplete="off"
-                class="form-control" 
-                placeholder="Datepicker"
-                bsDatepicker
-                name="inDate"
-                #incomeDate
-                required
-                [bsConfig]="{ adaptivePosition: true, isAnimated: true }">
+  <div class="col-sm-12 col-md-10 col-lg-10">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <button 
+          type="button" 
+          class="btn income-btn mr-3" 
+          (click)="staticModal.show()" 
+          style="width: 100%;"
+          >Add Income</button>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <button 
+          type="button" 
+          class="btn expense-btn" 
+          (click)="staticModal2.show()" 
+          style="width: 100%;"
+          >Add Expenditure</button>
+      </div>
+    </div>
+      <br/>
+      <!-- Income Modal -->
+      <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+          tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 id="dialog-static-name" class="modal-title pull-left">Add your Income details</h4>
+              <button type="button" class="btn close-btn pull-right" aria-label="Close" (click)="staticModal.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <div class="form-group">
               <select 
@@ -86,6 +47,7 @@
               <div class="col-sm-6"></div>
               <div class="col-sm-6">
                 <div class="row">
+                  <div class="col-sm-6"></div>
                   <div class="col-sm-6">
                     <button 
                       type="button" 
@@ -95,70 +57,22 @@
                       [disabled]="detailsForm.invalid"
                       >Save</button>
                   </div>
-                  <div class="col-sm-6">
-                    <button 
-                      type="button" 
-                      class="btn cancel-btn" 
-                      style="width: 100%;"  
-                      (click)="staticModal.hide()">Cancel</button>
-                  </div>
-                </div>          
-              </div>
-            </div>              
-          </form> 
+                </div>              
+              </form> 
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Expense Modal -->
-  <div class="modal fade" bsModal #staticModal2="bs-modal" [config]="{backdrop: 'static'}"
-      tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 id="dialog-static-name" class="modal-title pull-left">Add your Expenditure details</h4>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal2.hide()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form #detailsForm2 = 'ngForm'> 
-            <div class="form-group">
-              <label for="description" class="form-label">
-                <h6>Add the description here</h6>
-              </label>
-              <textarea 
-                name="description" 
-                class="form-control" 
-                rows="5" 
-                style="resize: none;"
-                ngModel
-                #desc2='ngModel'
-                required></textarea>
-            </div>
-            <div class="form-group">
-              <label for="Expenditure">
-                <h6>Add Expenditure Amount in rupees</h6>
-              </label>
-              <input 
-                class="form-control" 
-                type="number" 
-                name="expenditure"
-                ngModel
-                #expense='ngModel'
-                required><br/>
-            </div>
-            <div class="form-group" id="dp">
-              <input 
-              class="form-control"
-                type="text"
-                placeholder="Datepicker"
-                class="form-control"
-                bsDatepicker
-                name="exDate"
-                #expenseDate
-                [bsConfig]="{ adaptivePosition: true }">
+      <!-- Expense Modal -->
+      <div class="modal fade" bsModal #staticModal2="bs-modal" [config]="{backdrop: 'static'}"
+          tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 id="dialog-static-name" class="modal-title pull-left">Add your Expenditure details</h4>
+              <button type="button" class="btn close-btn pull-right" aria-label="Close" (click)="staticModal2.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <div class="form-group">
               <select class="custom-select"
@@ -173,19 +87,17 @@
               <div class="col-sm-6"></div>
               <div class="col-sm-6">
                 <div class="row">
+                  <div class="col-sm-6"></div>
                   <div class="col-sm-6">
                     <button type="button" class="btn save-btn" style="width: 100%;" (click)="sendExpense(desc2, expense, expenseDate,expenseUser); staticModal2.hide(); detailsForm2.reset()" [disabled]="detailsForm2.invalid">Save</button>
                   </div>
-                  <div class="col-sm-6">
-                    <button type="button" class="btn cancel-btn" style="width: 100%;"  (click)="staticModal2.hide()">Cancel</button>
-                  </div>
-                </div>          
-              </div>
-            </div>              
-          </form> 
+                </div>              
+              </form> 
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+      <trackertable [amount]="amnt"  [description]="desp" [expenseAmount]="exAmnt" [description2]="desp2" [incomeDate]="myIncomeDate" [expenseDate]="myExpenseDate"></trackertable>
   </div>
   
   <trackertable [amount]="amnt"  [description]="desp" [expenseAmount]="exAmnt" [description2]="desp2" [incomeDate]="myIncomeDate" [expenseDate]="myExpenseDate"  [inUser]="myIncomeUser" [exUser]="myExpenseUser"></trackertable>

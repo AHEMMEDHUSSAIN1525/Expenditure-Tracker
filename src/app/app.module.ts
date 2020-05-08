@@ -8,7 +8,10 @@ import { AddincomeComponent } from './addincome/addincome.component';
 import { TrackertableComponent } from './trackertable/trackertable.component'; 
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import {TableModule} from 'primeng/table';
+import {CheckboxModule} from 'primeng/checkbox';
+
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -19,6 +22,14 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { ReportComponent } from './report/report.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
+import { SendComponent } from './records/send/send.component';
+import { ReceiveComponent } from './records/receive/receive.component';
+
+import { RecordsService } from './shared/services/records.service';
+import { FiltersComponent } from './filters/filters.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +39,11 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     NavbarComponent,
     PieChartComponent,
     BarChartComponent,
-    ReportComponent
+    ReportComponent,
+
+    SendComponent,
+    ReceiveComponent,
+    FiltersComponent
   ],
   imports: [ 
     BrowserModule,
@@ -39,6 +54,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     BsDatepickerModule.forRoot(),
     TableModule,
     BsDropdownModule.forRoot(),
+    CheckboxModule,
     ReactiveFormsModule,
     RouterModule.forRoot(
       [
@@ -55,9 +71,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
           component: ReportComponent
         }
       ]
-      )
+      ),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [RecordsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,36 +1,15 @@
-<!-- <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">S.No</th>
-      <th scope="col">Description</th>
-      <th scope="col">Income</th>
-      <th scope="col">Expenditure</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let record of records; let i = index;">
-      <td>{{ i + 1 }}</td>
-      <td>{{ record.desc }}</td>
-      <td>{{ record.amount | currency:'INR'}}</td>
-      <td>{{record.exAmount | currency:'INR'}}</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><b>Totals</b></td>
-      <td><strong>{{totalIncome | currency:'INR'}}</strong></td>
-      <td><strong>{{ totalExpense | currency:'INR'}}</strong></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><b>Balance</b></td>
-      <td rowspan="2"></td>
-      <td><strong>{{totalIncome - totalExpense  | currency:'INR'}}</strong></td>
-    </tr> 
-  </tbody>
-</table>  -->
-
-<p-table [value]="records" class="table">
+<p-table #et [value]="records" 
+class="table" 
+[responsive]="true" 
+[globalFilterFields]="['desc', 'amount', 'exAmount', 'date']">
+  <ng-template pTemplate="caption">
+    <div style="text-align: left">        
+      
+      <input id="filterInput" type="text" pInputText size="50" placeholder="Global Filter" 
+      (input)="et.filterGlobal($event.target.value, 'contains')" style="width:auto">
+      <i class="pi pi-search" style="margin:4px 4px 0 0" ></i>
+    </div>
+  </ng-template>
   <ng-template pTemplate="header">
     <tr>
       <th scope="col">S.No</th>
@@ -63,8 +42,38 @@
   </ng-template>
 </p-table>
 
-<div class="alert alert-primary savings container" >
+<hr>
+
+<button class="btn btn-success" (click)="sendRecords()"> Print Records</button>
+
+<receive></receive>
+
+<div class="alert alert-primary container">
    <h6 class="text-success"> Total Savings: {{totalIncome  | currency:'INR'}} - {{totalExpense | currency:'INR'}} = {{ totalIncome - totalExpense | currency:'INR'}}</h6>
    <h6 class="alert alert-danger" *ngIf="draft" >Running out of Balance</h6>
    <!-- <h6 class="alert alert-success" *ngIf="yippee">You doing a Great Job!!!</h6> -->
 </div> 
+
+<!-- <p-table #dt [value]="data" [globalFilterFields]="['age', 'name', 'height']">
+  <ng-template pTemplate="caption">
+      <div style="text-align: right">
+          <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+          <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"
+              style="width:auto">
+      </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Height</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-col>
+      <tr>
+          <td>{{col.name}}</td>
+          <td>{{col.age}}</td>
+          <td>{{col.height}}</td>
+      </tr>
+  </ng-template>
+</p-table> -->
