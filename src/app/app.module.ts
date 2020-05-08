@@ -13,14 +13,22 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import {RouterModule} from'@angular/router';
-
+import { NavbarComponent } from './navbar/navbar.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { ReportComponent } from './report/report.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddincomeComponent,
     TrackertableComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent,
+    PieChartComponent,
+    BarChartComponent,
+    ReportComponent
   ],
   imports: [ 
     BrowserModule,
@@ -30,6 +38,7 @@ import {RouterModule} from'@angular/router';
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     TableModule,
+    BsDropdownModule.forRoot(),
     ReactiveFormsModule,
     RouterModule.forRoot(
       [
@@ -40,6 +49,10 @@ import {RouterModule} from'@angular/router';
         {
           path:'addincome',
           component: AddincomeComponent
+        },
+        {
+          path:'report',
+          component: ReportComponent
         }
       ]
       )

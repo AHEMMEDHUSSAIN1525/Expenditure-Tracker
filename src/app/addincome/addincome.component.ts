@@ -11,17 +11,24 @@ export class AddincomeComponent implements OnInit {
  exAmnt:any;
  myIncomeDate:any;
  myExpenseDate:any;
+ myIncomeUser:any;
+ myExpenseUser:any;
+
+ users: string[] = [];
   ngOnInit(): void { 
+    this.users=['Ahemmed','Dileep','Suman','Sravani'];
+
   }
-  sendIncome(desc, amount, incomeDate){
+  sendIncome(desc, amount, incomeDate, incomeUser){
     this.desp= desc.value;
     this.amnt = amount.value;  
     this.myIncomeDate = incomeDate.value;
+    this.myIncomeUser=incomeUser.value;
   }
-   sendExpense(desc2, expense, expenseDate){
+   sendExpense(desc2, expense, expenseDate, expenseUser){
     this.desp2= desc2.value;
     this.exAmnt=expense.value;
     this.myExpenseDate = expenseDate.value;
-  } 
+    this.myExpenseUser = expenseUser.value; 
 } 
- 
+}

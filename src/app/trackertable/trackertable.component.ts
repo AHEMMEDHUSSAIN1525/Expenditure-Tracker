@@ -11,6 +11,8 @@ export class TrackertableComponent implements OnInit, OnChanges {
   @Input() description2:any
   @Input() incomeDate:any
   @Input() expenseDate:any
+  @Input() inUser:any
+  @Input() exUser:any
 
   draft:boolean = false;
   yippee:boolean;
@@ -23,18 +25,18 @@ export class TrackertableComponent implements OnInit, OnChanges {
   totalSaving:any;
   temp = 0.00;
 
-  records:{desc:string, amount:number, exAmount:number, date:any}[] = [];
+  records:{desc:string, amount:number, exAmount:number, date:any, user:any}[] = [];
 
   ngOnInit(){ }
   ngOnChanges() {
     // Checking for the description, income and expense and pushing the values in to the table
-    if(this.amount && this.description && this.incomeDate){
-      this.records.push({desc:this.description, amount:this.amount, exAmount:this.temp, date:this.incomeDate});
+    if(this.amount && this.description && this.incomeDate && this.inUser){
+      this.records.push({desc:this.description, amount:this.amount, exAmount:this.temp, date:this.incomeDate, user:this.inUser});
       this.amount='';
       this.description=''; 
     }
-    else if(this.expenseAmount && this.description2 && this.expenseDate){
-      this.records.push({desc:this.description2, amount:this.temp, exAmount:this.expenseAmount, date:this.expenseDate});
+    else if(this.expenseAmount && this.description2 && this.expenseDate && this.exUser){
+      this.records.push({desc:this.description2, amount:this.temp, exAmount:this.expenseAmount, date:this.expenseDate, user:this.exUser});
     }
     //Pushing income values to income array
     for(var i = 0; i < this.records.length; i++){

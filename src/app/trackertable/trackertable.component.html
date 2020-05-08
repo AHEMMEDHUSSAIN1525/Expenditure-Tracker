@@ -34,15 +34,18 @@
   <ng-template pTemplate="header">
     <tr>
       <th scope="col">S.No</th>
+      <th scope="col">Username</th>
       <th scope="col">Description</th>
       <th scope="col">Income</th>
       <th scope="col">Expenditure</th>
       <th scope="col">Date</th>
+      
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-record  let-i="rowIndex+1">
     <tr>
       <td>{{i}}</td>
+      <td>{{record.user}}</td>
       <td>{{record.desc}}</td>
       <td>{{record.amount | currency:'INR'}}</td>
       <td>{{record.exAmount | currency:'INR'}}</td>
